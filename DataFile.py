@@ -89,8 +89,8 @@ class Data_store(Constant_store, Variable_store):
             self._constants[variable_name] = value
             
             if (write_to_file):
-                with open(CONSTANTS_FILENAME, "w") as constants_file:
-                    constants_file.write(f"{variable_name} = {value}")
+                with open(self._CONSTANTS_FILENAME, "a") as constants_file:
+                    constants_file.write(f"\n{variable_name} = {value}")
                 
             print(f"constant {variable_name} has added sucessfully")
         

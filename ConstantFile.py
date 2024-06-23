@@ -27,11 +27,15 @@ class Constant_store:   # объект данного класса содерж�
         
         self._good_init = True
         
-        self.__CONSTANTS_FILENAME = CONSTANTS_FILENAME
+        self._CONSTANTS_FILENAME = CONSTANTS_FILENAME
         
-        with open(CONSTANTS_FILENAME, "r") as constants_file:
+        with open(CONSTANTS_FILENAME, "r") as CONSTANTS_FILE:
         
-            constant_data = constants_file.readlines()
+            constant_data = CONSTANTS_FILE.readlines()
+            
+            print(type(CONSTANTS_FILE))
+            
+            print(constant_data)
             
             self._constants: Dict[str, int] = Const_dict()
             
@@ -46,6 +50,9 @@ class Constant_store:   # объект данного класса содерж�
         if not (Constant_store.check(self)):
             self._good_init = False
 
+
+    #def __readlines(self, CONSTANTS_FILE):
+    
 
     def __get_constant_equation(self, equation_string: str) -> tuple:     # парсинг строки вида "x = 5", посредством убирания пробелов и символа =. Метод привязан к __init__ и не требует проверки объекта, потому что он ещё не создан.
         
@@ -75,7 +82,7 @@ class Constant_store:   # объект данного класса содерж�
     def get_info(self, print_depth: int = 0) -> bool:
                       
         space_print(print_depth, "Constant_store")
-        space_print(print_depth, f"This is a dict, that stores constants from {self.__CONSTANTS_FILENAME}. Do not remove, add or change dict elements!!!")
+        space_print(print_depth, f"This is a dict, that stores constants from {self._CONSTANTS_FILENAME}. Do not remove, add or change dict elements!!!")
         
         for key, value in self._constants.items():
             space_print(print_depth, f"{key} = {value}")
